@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CallBack</title>
+  </head>
+  <body>
+    <h1>Hello World!!</h1>
+    <script>
+      //------_Ex1_---------
+
+      //         Create a function called sum
+      // that takes a single parameter n,
+      // and return the sum of all integers up to n starting from 0
+
+      // Ex: sum(2); => 2 + 1 + 0 => 3
+      // Ex: sum(5); => 5 + 4 + 3 + 2 + 1 + 0 => 15
+
+      console.log("---_Ex1_----");
+      function sum(n) {
+        let output = 0;
+        if (n == 0) {
+          n == 1;
+        } else {
+          output = n + sum(n - 1);
+        }
+        return output;
+      }
+
+      console.log(sum(5));
+
+      //------_Ex2_---------
+
+      //       Create a function called factorial
+      // that takes a single parameter n,
+      // and return the product of all integers up to n starting from 1
+
+      // Ex: factorial(3); =>3* 2 * 1 => 6
+      // Ex: factorial(4); => 4 * 3 * 2 * 1 => 24
+      console.log("---_Ex2_----");
+      function factorial(n) {
+        let output = 1;
+        if (n == 0) {
+          n == 1;
+        } else {
+          output = n * factorial(n - 1);
+        }
+        return output;
+      }
+
+      console.log(factorial(5));
+
+      //------_Ex3_---------
+      //         Create a function called repeatStr
+      // that takes 2 parameters string and number,
+      // and return the string number time with space
+      // Important: the stop condition should be [somthing=== 0]
+      //  Think how we can return nothing ???
+      //  Important: You should dint have extra space at the end
+      // Ex: repeatStr("to",2); => "to to"
+      // Ex: repeatStr("to",4); => "to to to to"
+      console.log("---_Ex3_----");
+
+      function repeatStr(t,n) {
+
+        text = "";
+
+        if (n==0) {
+            return false
+        } else{
+            repeatStr(t,n-1)
+            text+="" + t;
+            return `"${text}"`;
+        }
+      }
+      console.log("Text Is Repeated!  " + repeatStr("to ",6))
+
+      //------_Ex4_---------
+      //       Create a function called sum2
+      // that take two parameter
+      // and will return the sumation from the first number to the second number
+
+      // Ex: sum2(4, 5); => 4 + 5 => 9
+      // Ex: sum2(3, 6); => 3 + 4 + 5 + 6 => 18
+      console.log("---_Ex4_----");
+
+      function sum2(n1,n2) {
+
+        let res = 0
+
+        if (n1<=n2) {
+
+            res = n1 + sum2(n1+1,n2)
+        }
+        return res
+      }
+      console.log(sum2(2,5))
+
+    </script>
+  </body>
+</html>
