@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login-Valid-Storage</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/rejister.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="slide-image">
+        <div id="demo" class="carousel slide" data-bs-ride="carousel">
+          <!-- Indicators/dots -->
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+          </div>
+
+          <!-- The slideshow/carousel -->
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="https://orangecodingacademy.com/assets/img/1.jpg" alt="" class="d-block" style="width: 100%" />
+            </div>
+            <div class="carousel-item">
+              <img
+                src="https://cdn.discordapp.com/attachments/993069562834731044/1008674947838791691/j2_-_Copy.jpg"
+                alt=""
+                class="d-block"
+                style="width: 100%"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text">
+        <div class="first">
+          <nav class="navbar navbar-expand-sm bg-white navbar-white">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#"><img src="/orange-banner.png" /> </a>
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapsibleNavbar"
+              >
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" href="page-one.html"><b>Help</b></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="#about"><b>Terms & Conditions</b></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+
+        <hr />
+
+        <form action="#" name="form">
+          <p class="create">Sign in</p>
+
+          <label for="mail">Email address</label><br />
+          <input type="email" id="mail" name="email" /><br />
+          <div id="mailLoginMsg"></div>
+          <p id="email_error">eg:Username@domain.com</p>
+          <!-- ---------------------------- -->
+
+          <label for="password"> Create Password </label><br />
+          <input type="password" id="password" name="password" /><br />
+          <div id="passLoginMsg"></div>
+          <p id="pass_error">The Password should be between 6-18 characters.</p>
+          <!-- ---------------------------- -->
+          <input id="subBtn" class="sign" type="submit" value="Login" /><br /><br />
+          <div id="loginErrMsg"></div>
+          <a id="bRejis" href="/rejister.html">Rejister Now</a>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      let b2Rejis = document.getElementById("bRejis")
+      let myForm = document.forms.form;
+      var emailInput = document.getElementById("mail");
+      var passwordInput = document.getElementById("password");
+      let btnSub = document.getElementById("subBtn");
+      let loginErMsg = document.getElementById("loginErrMsg");
+      let mailFormat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+      let pwErrMessage = document.getElementById("passLoginMsg");
+      let mailErrMessage = document.getElementById("mailLoginMsg");
+
+      btnSub.onclick = function (event) {
+        let emailValid = false;
+        let mobilelValid = false;
+        let passwordlValid = false;
+
+        //--------------------------
+        if (!emailInput.value.match(mailFormat)) {
+          mailErrMessage.textContent = " Invalid Email";
+          mailErrMessage.style.color = "red";
+        } else {
+          mailErrMessage.textContent = "Valid Email";
+          mailErrMessage.style.color = "green";
+        }
+        //------
+
+        if (passwordInput.value.length >= 6 && passwordInput.value.length <= 18) {
+          pwErrMessage.textContent = "Valid Password";
+          pwErrMessage.style.color = "green";
+        } else {
+          pwErrMessage.textContent = "Invalid Password";
+          pwErrMessage.style.color = "red";
+        }
+
+        if (emailValid === false || mobilelValid === false || passwordlValid === false) {
+          event.preventDefault();
+        }
+
+        //-------------------
+
+        users = JSON.parse(localStorage.getItem("formData") || "[]");
+
+        inputmail = "";
+        inputpass = "";
+        obj = {};
+
+        for (i = 0; i < users.length; i++) {
+          obj = users[i];
+          inputmail = obj.emailV;
+          inputpass = obj.passwordV;
+
+          if (inputmail == emailInput.value && inputpass == passwordInput.value) {
+            loginErMsg.textContent = "You're Rejistered";
+            loginErMsg.style.color = "green";
+            window.sessionStorage.setItem("User's Email" , emailInput.value)
+            window.open("/new.html");
+          } else {
+            loginErMsg.textContent = "You're Not Rejistered!!" ,b2Rejis;
+            loginErMsg.style.color = "red";
+          }
+        }
+
+      };
+    </script>
+    
+  </body>
+</html>
